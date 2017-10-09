@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import static mad9132.demointent.Constants.ABOUT_DIALOG_TAG;
 import static mad9132.demointent.Constants.DEFAULT_LETTER;
@@ -69,10 +70,12 @@ public class PlainTextActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String plainText = mPlainText.getText().toString();
                 // TODO :: prevent the user from capitalizing empty messages!
-                // IF plainText is empty
-                // THEN
-                //     display a toast message: Empty Message!
-                //     return
+                if (plainText.isEmpty()) {
+                    Toast.makeText(getApplicationContext()
+                            , "Please enter some text to capitalize"
+                            , Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 // TODO: explicit Intent
                 Intent intent = new Intent( getApplicationContext(), CapitalizedTextActivity.class );
